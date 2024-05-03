@@ -15,4 +15,15 @@ interface RetrofitService {
         @Query("base_time") baseTime: Int,
         @Query("beach_num") beachNum: Int
     ) : Call<ShortWeatherApi>
+
+   @GET("getTwBuoyBeach")
+   fun getWaterTemp(
+       @Query("serviceKey") SERVICEKEY: String,
+       @Query("numOfRows") numOfRows: Int,
+       @Query("pageNo") pageNo: Int,
+       @Query("dataType") dataType: String,
+       @Query("beach_num") beach_num: Int,
+       @Query("searchTime") searchTime: Long
+   ) : Call<WaterTempApi>
+
 }

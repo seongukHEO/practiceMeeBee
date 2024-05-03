@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         retrofitWork()
+        retrofitWaterTemp()
         settingEvent()
     }
 
@@ -39,6 +40,23 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
+    private fun retrofitWaterTemp(){
+        val service = RetrofitInstance.retrofitService
+        service.getWaterTemp(RetrofitInstance.API_KEY, 10, 1, "json", 1, 202405032300)
+            .enqueue(object : retrofit2.Callback<WaterTempApi>{
+                override fun onResponse(p0: Call<WaterTempApi>, p1: Response<WaterTempApi>) {
+                    val result = p1.body()?.response?.body
+                    binding.textViewWaterTemp.text = "수온 : ${result?.items?.item?.map { it?.tw }}도"
+                    Log.d("test1234", "${result}")
+                }
+
+                override fun onFailure(p0: Call<WaterTempApi>, p1: Throwable) {
+                    //Log.e("test1234", "${p1}")
+                }
+
+            })
+    }
+
     private fun settingEvent(){
         with(binding){
             val service = RetrofitLocalInstance.retrofitService
@@ -52,8 +70,10 @@ class MainActivity : AppCompatActivity() {
                         ) {
                             val result = p1.body()?.getOceansBeachInfo
 
+
+
                             textViewJeju.text = "제주의 해수욕장 갯수 : ${result?.totalCount.toString()}"
-                            //Log.d("test1234", "${result?.totalCount}")
+                            Log.d("test1234", "${result}")
                         }
 
                         override fun onFailure(p0: Call<LocalOceanApi>, p1: Throwable) {
