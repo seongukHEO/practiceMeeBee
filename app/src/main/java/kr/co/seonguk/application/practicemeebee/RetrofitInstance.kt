@@ -34,7 +34,7 @@ object RetrofitInstance {
         Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(client)
-            .baseUrl("http://apis.data.go.kr/1360000/BeachInfoservice/getUltraSrtFcstBeach/")
+            .baseUrl("http://apis.data.go.kr/1360000/BeachInfoservice/")
             .build()
     }
 

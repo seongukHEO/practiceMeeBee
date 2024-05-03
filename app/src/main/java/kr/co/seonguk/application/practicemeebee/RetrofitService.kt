@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface RetrofitService {
-    @GET("response")
+    @GET("getUltraSrtFcstBeach")
     fun getShortWeather(
         @Query("serviceKey") SERVICEKEY: String,
         @Query("numOfRows") numOfRows: Int,
