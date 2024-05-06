@@ -5,3 +5,6 @@ enum class Util(val str:String) {
     BUSAN("부산"),
     INCHEON("인천")
 }
+
+
+

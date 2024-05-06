@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -41,6 +42,9 @@ android {
 
 dependencies {
 
+    implementation ("org.locationtech.proj4j:proj4j:1.1.4")
+
+
     implementation("androidx.core:core-ktx:1.13.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
@@ -51,6 +55,17 @@ dependencies {
 
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation ("com.squareup.retrofit2:converter-moshi:2.11.0")
+
+    //xml parser
+    implementation ("com.tickaroo.tikxml:annotation:0.8.13")
+    implementation ("com.tickaroo.tikxml:core:0.8.13")
+    implementation ("com.tickaroo.tikxml:retrofit-converter:0.8.13")
+    kapt ("com.tickaroo.tikxml:processor:0.8.13")
+
+    implementation ("com.squareup.retrofit2:adapter-rxjava2:2.11.0")
+
+
+
 
 
     implementation ("com.squareup.moshi:moshi-kotlin:1.12.0")

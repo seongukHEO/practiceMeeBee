@@ -30,7 +30,7 @@ object RetrofitInstance {
         .build()
 
 
-    private val retrofit: Retrofit by lazy {
+    val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(client)
