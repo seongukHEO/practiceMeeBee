@@ -147,8 +147,15 @@ class MainActivity : AppCompatActivity() {
         service.getSunset(12800, 3613, currentDate,"N", RetrofitSunsetInstance.LOCAL_KEY)
             .enqueue(object : retrofit2.Callback<SunsetApi>{
                 override fun onResponse(p0: Call<SunsetApi>, p1: Response<SunsetApi>) {
-                    val result = p1.body()?.body
-                    Log.d("test1234", "${result?.items?.item}  ")
+                    val result = p1.body()?.body?.items?.item
+
+                    val sunriseList = result?.map { it.sunrise }
+                    val sunriseString = sunriseList?.joinToString(separator = " ")
+
+                    binding.textViewPlace.text = result?.map { it.location }?.joinToString(separator = " ")
+                    binding.textViewSunrise.text = "일출 : ${sunriseString}"
+                    binding.textViewSunset.text = "일몰 : ${result?.map { it.sunset }?.joinToString(separator = " ")}"
+
                 }
 
                 override fun onFailure(p0: Call<SunsetApi>, p1: Throwable) {
